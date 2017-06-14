@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="artworks presentation">
+    <meta name="author" content="dominique.vassard@gmail">
 
-    <title>Hello Artworks!</title>
+    <title>Dominique Vassard - <%= gettext "Paintings & Drawings" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href="https://unpkg.com/ace-css/css/ace.min.css" rel="stylesheet">
     <style type="text/css">
@@ -22,11 +22,11 @@
   <body>
     <!-- NAVIGATION BAR -->
     <nav class="clearfix bg-darken-1 nav-bar">
-      <div class="sm-col col-12 center">
-        <a href="/" class="btn py2 nav-title">Home</a>
-        <a href="/" class="btn py2 nav-title">Works</a>
-        <a href="/" class="btn py2 nav-title">About me</a>
-        <a href="/" class="btn py2 nav-title">Contact</a>
+      <div class="sm-col col-11 center">
+        <a href="/" class="btn nav-title"><%= gettext "Home" %></a>
+        <a href="/" class="btn nav-title"><%= gettext "Works" %></a>
+        <a href="/" class="btn nav-title"><%= gettext "Biography" %></a>
+        <a href="/" class="btn nav-title"><%= gettext "Contact" %></a>
       </div>
     </nav>
 
