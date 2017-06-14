@@ -12,33 +12,30 @@
     <link href="https://unpkg.com/ace-css/css/ace.min.css" rel="stylesheet">
     <style type="text/css">
       .nav-title {
-        color: #555;
-        font-family: Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif;
-        font-size: 24px;
-        font-style: normal;
-        font-variant: normal;
+        color: #9D9D9D;
         font-weight: 400;
-        line-height: 20px;
-        border-bottom: 1px solid black;
-        height: 50px
+        width: 15%;
       }
     </style>
   </head>
 
   <body>
-      <nav class="clearfix black nav-title">
-        <div class="sm-col">
-          <a href="/" class="btn py2">Home</a>
-          <a href="/" class="btn py2">Works</a>
-          <a href="/" class="btn py2">About me</a>
-        </div>
-        <div class="sm-col-right">
-          <a href="/" class="btn py2">Contact</a>
-        </div>
-      </nav>
+    <!-- NAVIGATION BAR -->
+    <nav class="clearfix bg-darken-1 nav-bar">
+      <div class="sm-col col-12 center">
+        <a href="/" class="btn py2 nav-title">Home</a>
+        <a href="/" class="btn py2 nav-title">Works</a>
+        <a href="/" class="btn py2 nav-title">About me</a>
+        <a href="/" class="btn py2 nav-title">Contact</a>
+      </div>
+    </nav>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
+      <!-- CONTENT -->
+    <div class="sm-col col-12">
+        <%= render @view_module, @view_template, assigns %>
+    </div>
   </body>
 </html>

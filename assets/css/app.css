@@ -1,1 +1,17 @@
 /* This file is for your main application css. */
+.nav-bar {
+  color: #555;
+  font-family: Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+  border-bottom: 1px solid black;
+  height: 50px
+}
+
+.navbartitle {
+  font-weight: 200;
+  width: 15%;
+}
