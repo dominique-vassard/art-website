@@ -27,11 +27,11 @@ defmodule Artworks.Web.ConnCase do
   end
 
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Artworks.Repo)
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Artworks.Repo, {:shared, self()})
-    end
+  setup _tags do
+    # :ok = Ecto.Adapters.SQL.Sandbox.checkout(Artworks.Repo)
+    # unless tags[:async] do
+    #   Ecto.Adapters.SQL.Sandbox.mode(Artworks.Repo, {:shared, self()})
+    # end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 
