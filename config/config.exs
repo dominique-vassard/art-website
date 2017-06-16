@@ -7,7 +7,9 @@ use Mix.Config
 
 # General application configuration
 config :artworks,
-  ecto_repos: [Artworks.Repo]
+  ecto_repos: [Artworks.Repo],
+  fallback_language: "fr",
+  valid_languages: ~w(en fr)
 
 # Configures the endpoint
 config :artworks, Artworks.Web.Endpoint,

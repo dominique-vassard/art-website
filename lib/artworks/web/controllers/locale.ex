@@ -4,8 +4,8 @@ defmodule Artworks.Web.Locale do
   """
   import Plug.Conn
 
-  @valid_languages ~w(en fr)
-  @fallback_language "fr"
+  @valid_languages Application.get_env(:artworks, :valid_languages)
+  @fallback_language Application.get_env(:artworks, :fallback_language)
 
   def init(opts) do
     opts
