@@ -8,17 +8,18 @@
     <meta name="author" content="dominique.vassard@gmail">
 
     <title>Dominique Vassard - <%= gettext "Paintings & Drawings" %></title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href="https://unpkg.com/ace-css/css/ace.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <style type="text/css">
       .nav-title {
+        font-size: 24px;
         font-weight: 400;
         width: 15%;
       }
     </style>
   </head>
 
-  <body>
+  <body class="general">
     <!-- NAVIGATION BAR -->
     <%= render "menu.html" %>
 
@@ -26,7 +27,7 @@
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <!-- CONTENT -->
-    <div class="sm-col col-12">
+    <div class="container px2" >
         <%= render @view_module, @view_template, assigns %>
     </div>
   </body>

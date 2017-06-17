@@ -1,4 +1,4 @@
-defmodule Artworks.Web.PageController do
+defmodule Artworks.Web.HomeController do
   use Artworks.Web, :controller
 
   def index(conn, _params) do
