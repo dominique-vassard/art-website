@@ -12,7 +12,7 @@ defmodule Artworks.Web.Locale do
   import Plug.Conn
 
   @valid_locales Application.get_env(:artworks, :valid_locales)
-  @fallback_locales Application.get_env(:artworks, :fallback_locale)
+  @fallback_locale Application.get_env(:artworks, :fallback_locale)
 
   @doc """
     Callback implementation for `Plug.init/1`
@@ -25,21 +25,25 @@ defmodule Artworks.Web.Locale do
     Callback implementation for `Plug.call/2`
   """
   def call(conn, _opts) do
-    language =
-    case conn.params["locale"] || get_session(conn, :locale) do
-      nil     -> @fallback_locales
-      locale  -> locale
-    end
-
-    locale =
-    case Enum.member?(@valid_locales, language) do
-      true -> language
-      false -> @fallback_locales
-    end
+    locale = get_locale_from_conn(conn)
+    |> validate()
 
     Gettext.put_locale(Artworks.Web.Gettext, locale)
     conn
     |> put_session(:locale, locale)
   end
 
+  defp get_locale_from_conn(conn) do
+    case conn.params["locale"] || get_session(conn, :locale) do
+      nil     -> @fallback_locale
+      locale  -> locale
+    end
+  end
+
+  defp validate(locale) do
+    case Enum.member?(@valid_locales, locale) do
+      true -> locale
+      false -> @fallback_locale
+    end
+  end
 end
