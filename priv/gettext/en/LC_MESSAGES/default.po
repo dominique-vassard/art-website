@@ -1,0 +1,35 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: lib/artworks/web/templates/layout/app.html.eex:29
+msgid "Contact"
+msgstr ""
+
+#: lib/artworks/web/templates/layout/app.html.eex:26
+msgid "Home"
+msgstr ""
+
+#: lib/artworks/web/templates/page/index.html.eex:2
+msgid "Welcome to %{name}!"
+msgstr ""
+
+#: lib/artworks/web/templates/layout/app.html.eex:27
+msgid "Works"
+msgstr ""
+
+#: lib/artworks/web/templates/layout/app.html.eex:28
+msgid "Biography"
+msgstr ""
+
+#: lib/artworks/web/templates/layout/app.html.eex:10
+msgid "Paintings & Drawings"
+msgstr ""
