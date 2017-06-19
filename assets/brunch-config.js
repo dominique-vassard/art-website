@@ -24,12 +24,7 @@ exports.config = {
     },
     templates: {
       joinTo: "js/app.js"
-    },
-    order: [
-      after: [
-        "css/style.css"
-      ]
-    ]
+    }
   },
 
   conventions: {
