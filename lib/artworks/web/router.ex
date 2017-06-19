@@ -18,6 +18,7 @@ defmodule Artworks.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", HomeController, :index
+    get "/works", WorksController, :index
   end
 
   # Other scopes may use custom stacks.
