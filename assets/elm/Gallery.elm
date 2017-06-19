@@ -102,7 +102,7 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    div []
+    div [ class "gallery-container" ]
         [ viewModal model
         , div [ class "sm-col col-12 fit gallery" ]
             [ viewControl model Previous
@@ -176,7 +176,7 @@ viewControl model direction =
                     "right"
     in
         div
-            [ class "sm-col col-1 flex flex-center gallery-height"
+            [ class "sm-col col-1 flex flex-column gallery-control-container"
             ]
             [ i
                 [ class

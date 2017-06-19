@@ -10,13 +10,6 @@
     <title>Dominique Vassard - <%= gettext "Paintings & Drawings" %></title>
     <link href="https://unpkg.com/ace-css/css/ace.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <style type="text/css">
-      .nav-title {
-        font-size: 24px;
-        font-weight: 400;
-        width: 15%;
-      }
-    </style>
   </head>
 
   <body class="general">
@@ -27,7 +20,7 @@
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <!-- CONTENT -->
-    <div class="container px2" >
+    <div class="container px2 main-container">
         <%= render @view_module, @view_template, assigns %>
     </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

@@ -12718,7 +12718,7 @@ var _user$project$Main$viewControl = F2(
 			_elm_lang$html$Html$div,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('sm-col col-1 flex flex-center gallery-height'),
+				_0: _elm_lang$html$Html_Attributes$class('sm-col col-1 flex flex-column gallery-control-container'),
 				_1: {ctor: '[]'}
 			},
 			{
@@ -12752,7 +12752,11 @@ var _user$project$Main$viewControl = F2(
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('gallery-container'),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: _user$project$Main$viewModal(model),
