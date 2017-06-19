@@ -44,7 +44,7 @@ type alias Model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( { modal_opened = False
+    ( { modal_opened = True
       , images =
             ZipList.init
                 "./images/artworks/dessins-1.png"
@@ -132,11 +132,11 @@ viewModal model =
                                 [ class "modal-close"
                                 , onClick CloseModal
                                 ]
-                                [ text "X" ]
+                                [ i [ class "fa fa-close" ] [] ]
                             ]
-                        , div [ class " flex flex-center" ]
+                        , div [ class "flex flex-center" ]
                             [ img
-                                [ class "img-slide"
+                                [ class "img-slide-modal"
                                 , src (ZipList.current model.images)
                                 , onClick CloseModal
                                 ]

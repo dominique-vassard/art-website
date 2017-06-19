@@ -12567,7 +12567,7 @@ var _user$project$Main$update = F2(
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
 	_0: {
-		modal_opened: false,
+		modal_opened: true,
 		images: A2(
 			_user$project$Helpers_ZipList$init,
 			'./images/artworks/dessins-1.png',
@@ -12647,7 +12647,14 @@ var _user$project$Main$viewModal = function (model) {
 								},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text('X'),
+									_0: A2(
+										_elm_lang$html$Html$i,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('fa fa-close'),
+											_1: {ctor: '[]'}
+										},
+										{ctor: '[]'}),
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -12658,7 +12665,7 @@ var _user$project$Main$viewModal = function (model) {
 							_elm_lang$html$Html$div,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class(' flex flex-center'),
+								_0: _elm_lang$html$Html_Attributes$class('flex flex-center'),
 								_1: {ctor: '[]'}
 							},
 							{
@@ -12667,7 +12674,7 @@ var _user$project$Main$viewModal = function (model) {
 									_elm_lang$html$Html$img,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('img-slide'),
+										_0: _elm_lang$html$Html_Attributes$class('img-slide-modal'),
 										_1: {
 											ctor: '::',
 											_0: _elm_lang$html$Html_Attributes$src(
