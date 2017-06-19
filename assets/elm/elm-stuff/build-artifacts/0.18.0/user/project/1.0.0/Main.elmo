@@ -1,0 +1,294 @@
+var _user$project$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'MoveTo':
+				if (_p0._0.ctor === 'Next') {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								images: _user$project$Helpers_ZipList$forward(model.images)
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								images: _user$project$Helpers_ZipList$back(model.images)
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
+			case 'OpenModal':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{modal_opened: true}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{modal_opened: false}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});
+var _user$project$Main$init = {
+	ctor: '_Tuple2',
+	_0: {
+		modal_opened: false,
+		images: A2(
+			_user$project$Helpers_ZipList$init,
+			'./images/artworks/dessins-1.png',
+			{
+				ctor: '::',
+				_0: './images/artworks/peintures-7.jpg',
+				_1: {
+					ctor: '::',
+					_0: './images/artworks/peintures-8.jpg',
+					_1: {
+						ctor: '::',
+						_0: './images/artworks/peintures-9.jpg',
+						_1: {
+							ctor: '::',
+							_0: './images/artworks/peintures-hor.jpg',
+							_1: {
+								ctor: '::',
+								_0: './images/artworks/peintures-10.jpg',
+								_1: {
+									ctor: '::',
+									_0: './images/artworks/peintures-11.jpg',
+									_1: {
+										ctor: '::',
+										_0: './images/artworks/peintures-12.jpg',
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			})
+	},
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {modal_opened: a, images: b};
+	});
+var _user$project$Main$Next = {ctor: 'Next'};
+var _user$project$Main$Previous = {ctor: 'Previous'};
+var _user$project$Main$CloseModal = {ctor: 'CloseModal'};
+var _user$project$Main$viewModal = function (model) {
+	var modal = model.modal_opened ? A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('gallery-modal'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('modal-content'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('modal-close'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$CloseModal),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('X'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class(' flex flex-center'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$img,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('img-slide'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$src(
+												_user$project$Helpers_ZipList$current(model.images)),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$CloseModal),
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		}) : A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+	return modal;
+};
+var _user$project$Main$OpenModal = {ctor: 'OpenModal'};
+var _user$project$Main$MoveTo = function (a) {
+	return {ctor: 'MoveTo', _0: a};
+};
+var _user$project$Main$viewControl = F2(
+	function (model, direction) {
+		var direction_style = function () {
+			var _p1 = direction;
+			if (_p1.ctor === 'Previous') {
+				return 'left';
+			} else {
+				return 'right';
+			}
+		}();
+		var disabled_control = function () {
+			var _p2 = direction;
+			if (_p2.ctor === 'Previous') {
+				return _user$project$Helpers_ZipList$hasPrevious(model.images) ? '' : 'disabled';
+			} else {
+				return _user$project$Helpers_ZipList$hasNext(model.images) ? '' : 'disabled';
+			}
+		}();
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('sm-col col-1 flex flex-center gallery-height'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$i,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'fa fa-chevron-',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									direction_style,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										' fa-4x flex-auto center ',
+										A2(_elm_lang$core$Basics_ops['++'], 'gallery-control ', disabled_control))))),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(
+								_user$project$Main$MoveTo(direction)),
+							_1: {ctor: '[]'}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _user$project$Main$viewModal(model),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('sm-col col-12 fit gallery'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(_user$project$Main$viewControl, model, _user$project$Main$Previous),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('sm-col col-10 flex flex-center gallery-height'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$img,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('img-slide'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$src(
+													_user$project$Helpers_ZipList$current(model.images)),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$OpenModal),
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										{ctor: '[]'}),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(_user$project$Main$viewControl, model, _user$project$Main$Next),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{init: _user$project$Main$init, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions, view: _user$project$Main$view})();

@@ -1,0 +1,100 @@
+var _user$project$Helpers_ZipList$toList = function (items) {
+	var _p0 = items;
+	if (_p0.ctor === 'Just') {
+		return _p0._0;
+	} else {
+		return {ctor: '[]'};
+	}
+};
+var _user$project$Helpers_ZipList$hasNext = function (items) {
+	return _elm_lang$core$Native_Utils.cmp(
+		_elm_lang$core$List$length(items.next),
+		0) > 0;
+};
+var _user$project$Helpers_ZipList$hasPrevious = function (items) {
+	return _elm_lang$core$Native_Utils.cmp(
+		_elm_lang$core$List$length(items.previous),
+		0) > 0;
+};
+var _user$project$Helpers_ZipList$update = F2(
+	function (item, items) {
+		return _elm_lang$core$Native_Utils.update(
+			items,
+			{current: item});
+	});
+var _user$project$Helpers_ZipList$current = function (items) {
+	return items.current;
+};
+var _user$project$Helpers_ZipList$forward = function (items) {
+	var checkCurrent = _elm_lang$core$List$head(items.next);
+	var newItems = function () {
+		var _p1 = checkCurrent;
+		if (_p1.ctor === 'Just') {
+			return _elm_lang$core$Native_Utils.update(
+				items,
+				{
+					previous: A2(
+						_elm_lang$core$Basics_ops['++'],
+						items.previous,
+						{
+							ctor: '::',
+							_0: items.current,
+							_1: {ctor: '[]'}
+						}),
+					current: _p1._0,
+					next: _user$project$Helpers_ZipList$toList(
+						_elm_lang$core$List$tail(items.next))
+				});
+		} else {
+			return items;
+		}
+	}();
+	return newItems;
+};
+var _user$project$Helpers_ZipList$add = F2(
+	function (item, items) {
+		var newItems = _elm_lang$core$Native_Utils.update(
+			items,
+			{
+				next: {
+					ctor: '::',
+					_0: item,
+					_1: {ctor: '[]'}
+				}
+			});
+		return _user$project$Helpers_ZipList$forward(newItems);
+	});
+var _user$project$Helpers_ZipList$back = function (items) {
+	var checkCurrent = _elm_lang$core$List$head(
+		_elm_lang$core$List$reverse(items.previous));
+	var newItems = function () {
+		var _p2 = checkCurrent;
+		if (_p2.ctor === 'Just') {
+			return _elm_lang$core$Native_Utils.update(
+				items,
+				{
+					previous: _elm_lang$core$List$reverse(
+						_user$project$Helpers_ZipList$toList(
+							_elm_lang$core$List$tail(
+								_elm_lang$core$List$reverse(items.previous)))),
+					current: _p2._0,
+					next: {ctor: '::', _0: items.current, _1: items.next}
+				});
+		} else {
+			return items;
+		}
+	}();
+	return newItems;
+};
+var _user$project$Helpers_ZipList$ZipList = F3(
+	function (a, b, c) {
+		return {previous: a, current: b, next: c};
+	});
+var _user$project$Helpers_ZipList$init = F2(
+	function (item, items) {
+		return A3(
+			_user$project$Helpers_ZipList$ZipList,
+			{ctor: '[]'},
+			item,
+			items);
+	});
