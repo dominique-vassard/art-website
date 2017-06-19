@@ -1,3 +1,4 @@
+/* Gallery */
 .img-slide {
   display: block;
   max-width: 90%;
@@ -5,6 +6,8 @@
   border: 1px solid black;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
   cursor: pointer;
 }
 
@@ -24,6 +27,18 @@
 
 .gallery-height {
   height: 100%;
+}
+
+.gallery-container {
+  padding-top: 20px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  height: 94vh;
+}
+
+.gallery-control-container {
+  height: 100%;
+  padding-top: 25%;
 }
 
 .gallery-control {

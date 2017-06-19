@@ -20,7 +20,14 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        before: [
+          "css/phoenix.css",
+          "css/font-awesome.min.css",
+          "css/basscss.min.css"
+        ]
+      }
     },
     templates: {
       joinTo: "js/app.js"
