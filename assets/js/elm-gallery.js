@@ -13176,14 +13176,15 @@ var _user$project$Helpers_ZipList$init = F2(
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$workTypeToText = function (work_type) {
-	var _p0 = work_type;
-	if (_p0.ctor === 'Drawings') {
-		return 'drawings';
-	} else {
-		return 'paintings';
-	}
-};
+var _user$project$Main$workTypeToText = F2(
+	function (work_type, language) {
+		var _p0 = work_type;
+		if (_p0.ctor === 'Drawings') {
+			return _elm_lang$core$Native_Utils.eq(language, 'en') ? 'drawings' : 'Dessins';
+		} else {
+			return _elm_lang$core$Native_Utils.eq(language, 'en') ? 'paintings' : 'Peintures';
+		}
+	});
 var _user$project$Main$Flags = function (a) {
 	return {api_url: a};
 };
@@ -13239,7 +13240,7 @@ var _user$project$Main$viewWorkTypeButton = F2(
 			{
 				ctor: '::',
 				_0: _elm_lang$html$Html$text(
-					_user$project$Main$workTypeToText(work_type)),
+					A2(_user$project$Main$workTypeToText, work_type, 'fr')),
 				_1: {ctor: '[]'}
 			});
 	});
@@ -13254,7 +13255,7 @@ var _user$project$Main$getImageList = F2(
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				'/api/works/get_list/',
-				_user$project$Main$workTypeToText(work_type)));
+				A2(_user$project$Main$workTypeToText, work_type, 'en')));
 		var request = A2(_elm_lang$http$Http$get, url, _user$project$Main$imageListDecoder);
 		return A2(_elm_lang$http$Http$send, _user$project$Main$NewImageList, request);
 	});

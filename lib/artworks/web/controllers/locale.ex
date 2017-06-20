@@ -28,6 +28,9 @@ defmodule Artworks.Web.Locale do
     locale = get_locale_from_conn(conn)
     |> validate()
 
+    # For now, site is exclusively in french
+    locale = @fallback_locale
+
     Gettext.put_locale(Artworks.Web.Gettext, locale)
     conn
     |> put_session(:locale, locale)

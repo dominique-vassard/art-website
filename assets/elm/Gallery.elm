@@ -148,7 +148,7 @@ getImageList : String -> WorkType -> Cmd Msg
 getImageList api_url work_type =
     let
         url =
-            api_url ++ "/api/works/get_list/" ++ (workTypeToText work_type)
+            api_url ++ "/api/works/get_list/" ++ (workTypeToText work_type "en")
 
         request =
             Http.get url imageListDecoder
@@ -163,14 +163,20 @@ imageListDecoder =
         |> required "links" (list string)
 
 
-workTypeToText : WorkType -> String
-workTypeToText work_type =
+workTypeToText : WorkType -> String -> String
+workTypeToText work_type language =
     case work_type of
         Drawings ->
-            "drawings"
+            if language == "en" then
+                "drawings"
+            else
+                "Dessins"
 
         Paintings ->
-            "paintings"
+            if language == "en" then
+                "paintings"
+            else
+                "Peintures"
 
 
 getAllWorkTypes : List WorkType
@@ -226,7 +232,7 @@ viewWorkTypeButton model work_type =
             [ class ("btn btn-primary mb1 work-type " ++ selected_btn)
             , onClick (ViewWorkType work_type)
             ]
-            [ text (workTypeToText work_type) ]
+            [ text (workTypeToText work_type "fr") ]
 
 
 viewModal : Model -> Html Msg
