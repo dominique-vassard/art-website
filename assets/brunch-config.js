@@ -20,7 +20,14 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        before: [
+          "css/phoenix.css",
+          "css/font-awesome.min.css",
+          "css/basscss.min.css"
+        ]
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -37,7 +44,7 @@ exports.config = {
   // Phoenix paths configuration
   paths: {
     // Dependencies and current project directories to watch
-    watched: ["static", "css", "js", "vendor"],
+    watched: ["static", "css", "js", "vendor", "elm"],
     // Where to compile files to
     public: "../priv/static"
   },
@@ -47,7 +54,15 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
-    }
+    },
+     elmBrunch: {
+        elmFolder: "elm",
+        executablePath: "../node_modules/elm/binwrappers",
+        mainModules: ["Gallery.elm"],
+        makeParameters: ["--debug"],
+        outputFolder: "../js",
+        outputFile: "elm-gallery.js"
+     }
   },
 
   modules: {

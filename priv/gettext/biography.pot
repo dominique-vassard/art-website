@@ -10,22 +10,14 @@
 msgid ""
 msgstr ""
 
-#: lib/artworks/web/templates/layout/menu.html.eex:6
-msgid "Contact"
+#: lib/artworks/web/templates/home/biography.html.eex:8
+msgid "biography-1"
 msgstr ""
 
-#: lib/artworks/web/templates/layout/menu.html.eex:3
-msgid "Home"
+#: lib/artworks/web/templates/home/biography.html.eex:11
+msgid "biography-2"
 msgstr ""
 
-#: lib/artworks/web/templates/layout/menu.html.eex:4
-msgid "Works"
-msgstr ""
-
-#: lib/artworks/web/templates/layout/menu.html.eex:5
-msgid "Biography"
-msgstr ""
-
-#: lib/artworks/web/templates/layout/app.html.eex:10
-msgid "Paintings & Drawings"
+#: lib/artworks/web/templates/home/biography.html.eex:14
+msgid "biography-3"
 msgstr ""

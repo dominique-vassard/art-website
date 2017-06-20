@@ -1,0 +1,18 @@
+<div style="margin-top: 10%">
+  <div class="sm-col col-12">
+  <h1 class="center">Pourquoi?</h1>
+  </div>
+  <div class="sm-col col-12">
+    <center>
+      <p class="justify intro">
+      <%= dgettext "biography", "biography-1" %>
+      </p>
+      <p class="justify intro">
+      <%= dgettext "biography", "biography-2" %>
+      </p>
+      <p class="justify intro">
+      <%= dgettext "biography", "biography-3" %>
+      </p>
+    </center>
+  </div>
+</div>

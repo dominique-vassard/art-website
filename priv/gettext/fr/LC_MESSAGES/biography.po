@@ -1,0 +1,24 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: fr\n"
+
+#, fuzzy
+#: lib/artworks/web/templates/home/biography.html.eex:8
+msgid "biography-1"
+msgstr "Avant de peindre, je dessinais des entités abstraites et très colorées qui ont peuplées mes murs et parfois les cabines téléphoniques parisiennes."
+
+#: lib/artworks/web/templates/home/biography.html.eex:11
+msgid "biography-2"
+msgstr "Puis j'ai ressenti le besoin de peindre, de passer au \"support-roi\": j'ai donc utilisé cette énergie et ma précédente expérience pour créer des peintures abstraites qui soient en prise directe avec mon inconscient. Je ne voulais pas, et ne veux toujours pas, penser la peinture au préalable mais plutôt laisser l'esprit utiliser la main afin de laisser sa trace sur la toile de manière pure. "
+
+#: lib/artworks/web/templates/home/biography.html.eex:14
+msgid "biography-3"
+msgstr "Le résultat est une peinture dans laquelle le spectateur peut plonger, qu'il peut explorer comme un paysage, une peinture comme un paysage mental qui permet au spectateur d'explorer sa propre intériorité."

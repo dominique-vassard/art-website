@@ -1,11 +1,11 @@
 <div style="margin-top: 15%">
   <div class="sm-col col-12">
-  <h1 class="center">Contemplations oniriques</h1>
+  <h1 class="center">Contact</h1>
   </div>
   <div class="sm-col col-12">
     <center>
       <p class="intro">
-      <%= dgettext "index", "introduction" %>
+      dominique.vassard@gmail.com
       </p>
     </center>
   </div>

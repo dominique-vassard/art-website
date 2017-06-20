@@ -25,8 +25,11 @@ defmodule Artworks.Web.Locale do
     Callback implementation for `Plug.call/2`
   """
   def call(conn, _opts) do
-    locale = get_locale_from_conn(conn)
+    _locale = get_locale_from_conn(conn)
     |> validate()
+
+    # For now, site is exclusively in french
+    locale = @fallback_locale
 
     Gettext.put_locale(Artworks.Web.Gettext, locale)
     conn

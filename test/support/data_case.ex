@@ -16,7 +16,7 @@ defmodule Artworks.DataCase do
 
   using do
     quote do
-      alias Artworks.Repo
+      # alias Artworks.Repo
 
       import Ecto
       import Ecto.Changeset
@@ -25,12 +25,12 @@ defmodule Artworks.DataCase do
     end
   end
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Artworks.Repo)
+  setup _tags do
+    # :ok = Ecto.Adapters.SQL.Sandbox.checkout(Artworks.Repo)
 
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Artworks.Repo, {:shared, self()})
-    end
+    # unless tags[:async] do
+    #   Ecto.Adapters.SQL.Sandbox.mode(Artworks.Repo, {:shared, self()})
+    # end
 
     :ok
   end
