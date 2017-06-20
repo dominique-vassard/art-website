@@ -13,7 +13,9 @@ defmodule Artworks.Works.Work do
   Get links for he images of the given type
   """
   def get_links(work_type) when work_type in @work_types do
-    File.ls(@static_dir <> "/images/artworks/" <> work_type)
+    dir = "/images/artworks/" <> work_type
+    {:ok, filenames} = File.ls(@static_dir <> dir)
+    {:ok, filenames |> Enum.map(&(dir <> "/" <> &1))}
   end
 
   def get_links(work_type), do: {:error, "#{work_type} does not exist."}
