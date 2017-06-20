@@ -1,8 +1,11 @@
 module Main exposing (..)
 
-import Html exposing (Html, div, text, img, i, span)
+import Html exposing (Html, button, div, text, img, i, span)
 import Html.Attributes exposing (style, class, src, width)
 import Html.Events exposing (onClick)
+import Http exposing (get, send)
+import Json.Decode exposing (string, list, Decoder)
+import Json.Decode.Pipeline exposing (decode, required)
 import Helpers.ZipList as ZipList
     exposing
         ( ZipList
@@ -13,6 +16,7 @@ import Helpers.ZipList as ZipList
         )
 
 
+main : Program Flags Model Msg
 main =
     Html.programWithFlags
         { init = init
@@ -36,10 +40,22 @@ type Direction
     | Next
 
 
+type WorkType
+    = Drawings
+    | Paintings
+
+
+type alias ImageList =
+    { result : String
+    , links : List String
+    }
+
+
 type alias Model =
     { api_url : String
     , modal_opened : Bool
     , images : ZipList String
+    , work_type : WorkType
     }
 
 
@@ -49,22 +65,27 @@ type alias Model =
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( { api_url = flags.api_url
-      , modal_opened = False
-      , images =
-            ZipList.init
-                "./images/artworks/drawings/dessins-1.png"
-                [ "./images/artworks/paintings/peintures-7.jpg"
-                , "./images/artworks/paintings/peintures-8.jpg"
-                , "./images/artworks/paintings/peintures-9.jpg"
-                , "./images/artworks/paintings/peintures-hor.jpg"
-                , "./images/artworks/paintings/peintures-10.jpg"
-                , "./images/artworks/paintings/peintures-11.jpg"
-                , "./images/artworks/paintings/peintures-12.jpg"
-                ]
-      }
-    , Cmd.none
-    )
+    let
+        initial_work_type =
+            Paintings
+    in
+        ( { api_url = flags.api_url
+          , modal_opened = False
+          , images =
+                ZipList.init "" []
+                --"./images/artworks/drawings/dessins-1.png"
+                --[ "./images/artworks/paintings/peintures-7.jpg"
+                --, "./images/artworks/paintings/peintures-8.jpg"
+                --, "./images/artworks/paintings/peintures-9.jpg"
+                --, "./images/artworks/paintings/peintures-hor.jpg"
+                --, "./images/artworks/paintings/peintures-10.jpg"
+                --, "./images/artworks/paintings/peintures-11.jpg"
+                --, "./images/artworks/paintings/peintures-12.jpg"
+                --]
+          , work_type = initial_work_type
+          }
+        , getImageList flags.api_url initial_work_type
+        )
 
 
 
@@ -75,6 +96,8 @@ type Msg
     = MoveTo Direction
     | OpenModal
     | CloseModal
+    | NewImageList (Result Http.Error ImageList)
+    | ViewWorkType WorkType
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -91,6 +114,68 @@ update msg model =
 
         CloseModal ->
             ( { model | modal_opened = False }, Cmd.none )
+
+        ViewWorkType work_type ->
+            ( { model | work_type = work_type }
+            , getImageList model.api_url work_type
+            )
+
+        NewImageList (Ok { result, links }) ->
+            let
+                hd =
+                    Maybe.withDefault "" (List.head links)
+
+                tl =
+                    Maybe.withDefault [] (List.tail links)
+
+                imageList =
+                    if List.length links > 0 && result == "success" then
+                        ZipList.init hd tl
+                    else
+                        model.images
+            in
+                ( { model | images = imageList }, Cmd.none )
+
+        NewImageList (Err msg) ->
+            ( model, Cmd.none )
+
+
+
+-- COMMANDS
+
+
+getImageList : String -> WorkType -> Cmd Msg
+getImageList api_url work_type =
+    let
+        url =
+            api_url ++ "/api/works/get_list/" ++ (workTypeToText work_type)
+
+        request =
+            Http.get url imageListDecoder
+    in
+        Http.send NewImageList request
+
+
+imageListDecoder : Decoder ImageList
+imageListDecoder =
+    decode ImageList
+        |> required "result" string
+        |> required "links" (list string)
+
+
+workTypeToText : WorkType -> String
+workTypeToText work_type =
+    case work_type of
+        Drawings ->
+            "drawings"
+
+        Paintings ->
+            "paintings"
+
+
+getAllWorkTypes : List WorkType
+getAllWorkTypes =
+    [ Paintings, Drawings ]
 
 
 
@@ -110,6 +195,8 @@ view : Model -> Html Msg
 view model =
     div [ class "gallery-container" ]
         [ viewModal model
+        , div [ class "sm-col col-12 fit center" ]
+            (List.map (viewWorkTypeButton model) getAllWorkTypes)
         , div [ class "sm-col col-12 fit gallery" ]
             [ viewControl model Previous
             , div
@@ -124,6 +211,22 @@ view model =
             , viewControl model Next
             ]
         ]
+
+
+viewWorkTypeButton : Model -> WorkType -> Html Msg
+viewWorkTypeButton model work_type =
+    let
+        selected_btn =
+            if work_type == model.work_type then
+                "selected"
+            else
+                ""
+    in
+        button
+            [ class ("btn btn-primary mb1 work-type " ++ selected_btn)
+            , onClick (ViewWorkType work_type)
+            ]
+            [ text (workTypeToText work_type) ]
 
 
 viewModal : Model -> Html Msg

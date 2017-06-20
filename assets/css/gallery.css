@@ -94,3 +94,28 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+button.work-type {
+  color: black;
+  font-size: 18px;
+  width: 150px;
+  margin-right: 20px;
+  background-color: #F0F0F0;
+  border-color: lightgray;
+  border-radius: 5px;
+}
+
+button.work-type:hover {
+  background-color: lightgray;
+  border-color: gray;
+}
+
+button.work-type:active {
+  background-color: lightgray;
+  border-color: gray;
+}
+
+button.work-type.selected {
+  background-color: lightgray;
+  border-color: gray;
+}
