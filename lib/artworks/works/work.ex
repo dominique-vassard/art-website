@@ -6,7 +6,8 @@ defmodule Artworks.Works.Work do
   Works are images files stored in directory in /priv/static/images/artworks
   """
 
-  @static_dir Application.app_dir(:artworks, "priv/static")
+  # @static_dir Application.app_dir(:artworks, "priv/static")
+  @static_dir "priv/static"
   @work_types ~w(drawings paintings)
 
   @doc """
