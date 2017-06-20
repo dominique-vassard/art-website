@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :artworks, Artworks.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "art_website",
+  password: "bliUbEl5",
   database: "artworks_dev",
   hostname: "localhost",
   pool_size: 10

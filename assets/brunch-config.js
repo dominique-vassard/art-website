@@ -59,7 +59,7 @@ exports.config = {
         elmFolder: "elm",
         executablePath: "../node_modules/elm/binwrappers",
         mainModules: ["Gallery.elm"],
-        makeParameters: ["--debug"],
+        // makeParameters: ["--debug"],
         outputFolder: "../js",
         outputFile: "elm-gallery.js"
      }
