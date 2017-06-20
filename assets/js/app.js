@@ -22,4 +22,4 @@ import "phoenix_html"
 import Elm from "./elm-gallery.js"
 
 const elmDiv = document.getElementById("elm-main")
-    , elmApp = Elm.Main.embed(elmDiv)
+    , elmApp = Elm.Main.embed(elmDiv, {api_url: window.location.origin})

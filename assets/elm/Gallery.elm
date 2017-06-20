@@ -13,9 +13,8 @@ import Helpers.ZipList as ZipList
         )
 
 
-main : Program Never Model Msg
 main =
-    Html.program
+    Html.programWithFlags
         { init = init
         , update = update
         , subscriptions = subscriptions
@@ -27,13 +26,19 @@ main =
 -- MODEL
 
 
+type alias Flags =
+    { api_url : String
+    }
+
+
 type Direction
     = Previous
     | Next
 
 
 type alias Model =
-    { modal_opened : Bool
+    { api_url : String
+    , modal_opened : Bool
     , images : ZipList String
     }
 
@@ -42,19 +47,20 @@ type alias Model =
 -- INIT
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( { modal_opened = True
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    ( { api_url = flags.api_url
+      , modal_opened = False
       , images =
             ZipList.init
-                "./images/artworks/dessins-1.png"
-                [ "./images/artworks/peintures-7.jpg"
-                , "./images/artworks/peintures-8.jpg"
-                , "./images/artworks/peintures-9.jpg"
-                , "./images/artworks/peintures-hor.jpg"
-                , "./images/artworks/peintures-10.jpg"
-                , "./images/artworks/peintures-11.jpg"
-                , "./images/artworks/peintures-12.jpg"
+                "./images/artworks/drawings/dessins-1.png"
+                [ "./images/artworks/paintings/peintures-7.jpg"
+                , "./images/artworks/paintings/peintures-8.jpg"
+                , "./images/artworks/paintings/peintures-9.jpg"
+                , "./images/artworks/paintings/peintures-hor.jpg"
+                , "./images/artworks/paintings/peintures-10.jpg"
+                , "./images/artworks/paintings/peintures-11.jpg"
+                , "./images/artworks/paintings/peintures-12.jpg"
                 ]
       }
     , Cmd.none
