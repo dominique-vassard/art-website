@@ -5,9 +5,7 @@
   <div class="sm-col col-12">
     <center>
       <p class="intro">
-        Rêver conduit dans des endroits étrange à la limite du connu et de l'inconnu.
-        Les lieux se mélangent au temps dans une danse sans fin.
-        On ne sait jamais si on est déjà venu, si l'endroit familier a été légèrement transformé ou si cette impression de familiarité n'est qu'un leurre.
+      <%= dgettext "index", "introduction" %>
       </p>
     </center>
   </div>

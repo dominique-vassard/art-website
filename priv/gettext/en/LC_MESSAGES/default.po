@@ -10,23 +10,19 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/artworks/web/templates/layout/app.html.eex:29
+#: lib/artworks/web/templates/layout/menu.html.eex:6
 msgid "Contact"
 msgstr ""
 
-#: lib/artworks/web/templates/layout/app.html.eex:26
+#: lib/artworks/web/templates/layout/menu.html.eex:3
 msgid "Home"
 msgstr ""
 
-#: lib/artworks/web/templates/page/index.html.eex:2
-msgid "Welcome to %{name}!"
-msgstr ""
-
-#: lib/artworks/web/templates/layout/app.html.eex:27
+#: lib/artworks/web/templates/layout/menu.html.eex:4
 msgid "Works"
 msgstr ""
 
-#: lib/artworks/web/templates/layout/app.html.eex:28
+#: lib/artworks/web/templates/layout/menu.html.eex:5
 msgid "Biography"
 msgstr ""
 
