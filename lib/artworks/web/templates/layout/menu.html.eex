@@ -1,7 +1,7 @@
 <nav class="clearfix bg-darken-1 nav-bar">
   <div class="sm-col col-11 center">
     <a href="/" class="btn nav-title m1"><%= gettext "Home" %></a>
-    <a href="/" class="btn nav-title"><%= gettext "Works" %></a>
+    <a href="/works" class="btn nav-title"><%= gettext "Works" %></a>
     <a href="/" class="btn nav-title"><%= gettext "Biography" %></a>
     <a href="/" class="btn nav-title"><%= gettext "Contact" %></a>
   </div>

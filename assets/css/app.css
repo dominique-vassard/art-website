@@ -21,3 +21,12 @@
 .main-container {
     width: 100%;
 }
+
+.intro {
+  font-size: 20px;
+  width: 50%;
+}
+
+.container-halfup {
+  margin-top: 15%;
+}
