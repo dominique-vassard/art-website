@@ -14,11 +14,15 @@ defmodule Artworks.Works.Work do
   Get links for he images of the given type
   """
   def get_links(work_type) when work_type in @work_types do
-    IO.puts @static_dir
     dir = "/images/artworks/" <> work_type
-    IO.puts "dir: #{inspect dir}"
     {:ok, filenames} = File.ls(@static_dir <> dir)
-    {:ok, filenames |> Enum.map(&(dir <> "/" <> &1))}
+    res =
+    filenames
+      |> Enum.map(&(dir <> "/" <> &1))
+      |> Enum.filter(fn fname ->
+        Regex.run(~r/[\w-]+[\w-]{32}.(gif|jpg|png)/, fname) == nil
+      end)
+    {:ok, res}
   end
 
   def get_links(work_type), do: {:error, "#{work_type} does not exist."}
