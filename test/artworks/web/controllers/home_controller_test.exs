@@ -3,6 +3,6 @@ defmodule Artworks.Web.HomeControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Lorem Ipsum"
+    assert html_response(conn, 200) =~ "Contemplations oniriques"
   end
 end
