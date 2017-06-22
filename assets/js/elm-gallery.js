@@ -9121,6 +9121,13 @@ var _user$project$Helpers_ZipList$toList = function (items) {
 		return {ctor: '[]'};
 	}
 };
+var _user$project$Helpers_ZipList$next = function (items) {
+	return _elm_lang$core$List$head(items.next);
+};
+var _user$project$Helpers_ZipList$previous = function (items) {
+	return _elm_lang$core$List$head(
+		_elm_lang$core$List$reverse(items.next));
+};
 var _user$project$Helpers_ZipList$hasNext = function (items) {
 	return _elm_lang$core$Native_Utils.cmp(
 		_elm_lang$core$List$length(items.next),
@@ -9214,13 +9221,38 @@ var _user$project$Helpers_ZipList$init = F2(
 			items);
 	});
 
+var _user$project$Main$preloadNextImage = function (model) {
+	var preloadImg = function () {
+		var _p0 = _user$project$Helpers_ZipList$next(model.images);
+		if (_p0.ctor === 'Just') {
+			return A2(
+				_elm_lang$html$Html$img,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('display-none'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$src(_p0._0),
+						_1: {ctor: '[]'}
+					}
+				},
+				{ctor: '[]'});
+		} else {
+			return A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{ctor: '[]'});
+		}
+	}();
+	return preloadImg;
+};
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$workTypeToText = F2(
 	function (work_type, language) {
-		var _p0 = work_type;
-		if (_p0.ctor === 'Drawings') {
+		var _p1 = work_type;
+		if (_p1.ctor === 'Drawings') {
 			return _elm_lang$core$Native_Utils.eq(language, 'en') ? 'drawings' : 'Dessins';
 		} else {
 			return _elm_lang$core$Native_Utils.eq(language, 'en') ? 'paintings' : 'Peintures';
@@ -9318,10 +9350,10 @@ var _user$project$Main$init = function (flags) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		switch (_p1.ctor) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
 			case 'MoveTo':
-				if (_p1._0.ctor === 'Next') {
+				if (_p2._0.ctor === 'Next') {
 					return {
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
@@ -9359,28 +9391,28 @@ var _user$project$Main$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ViewWorkType':
-				var _p2 = _p1._0;
+				var _p3 = _p2._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{work_type: _p2}),
-					_1: A2(_user$project$Main$getImageList, model.api_url, _p2)
+						{work_type: _p3}),
+					_1: A2(_user$project$Main$getImageList, model.api_url, _p3)
 				};
 			default:
-				if (_p1._0.ctor === 'Ok') {
-					var _p3 = _p1._0._0.links;
+				if (_p2._0.ctor === 'Ok') {
+					var _p4 = _p2._0._0.links;
 					var tl = A2(
 						_elm_lang$core$Maybe$withDefault,
 						{ctor: '[]'},
-						_elm_lang$core$List$tail(_p3));
+						_elm_lang$core$List$tail(_p4));
 					var hd = A2(
 						_elm_lang$core$Maybe$withDefault,
 						'',
-						_elm_lang$core$List$head(_p3));
+						_elm_lang$core$List$head(_p4));
 					var imageList = ((_elm_lang$core$Native_Utils.cmp(
-						_elm_lang$core$List$length(_p3),
-						0) > 0) && _elm_lang$core$Native_Utils.eq(_p1._0._0.result, 'success')) ? A2(_user$project$Helpers_ZipList$init, hd, tl) : model.images;
+						_elm_lang$core$List$length(_p4),
+						0) > 0) && _elm_lang$core$Native_Utils.eq(_p2._0._0.result, 'success')) ? A2(_user$project$Helpers_ZipList$init, hd, tl) : model.images;
 					return {
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
@@ -9490,16 +9522,16 @@ var _user$project$Main$MoveTo = function (a) {
 var _user$project$Main$viewControl = F2(
 	function (model, direction) {
 		var direction_style = function () {
-			var _p4 = direction;
-			if (_p4.ctor === 'Previous') {
+			var _p5 = direction;
+			if (_p5.ctor === 'Previous') {
 				return 'left';
 			} else {
 				return 'right';
 			}
 		}();
 		var disabled_control = function () {
-			var _p5 = direction;
-			if (_p5.ctor === 'Previous') {
+			var _p6 = direction;
+			if (_p6.ctor === 'Previous') {
 				return _user$project$Helpers_ZipList$hasPrevious(model.images) ? '' : 'disabled';
 			} else {
 				return _user$project$Helpers_ZipList$hasNext(model.images) ? '' : 'disabled';
@@ -9604,7 +9636,11 @@ var _user$project$Main$view = function (model) {
 												}
 											},
 											{ctor: '[]'}),
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: _user$project$Main$preloadNextImage(model),
+											_1: {ctor: '[]'}
+										}
 									}),
 								_1: {
 									ctor: '::',

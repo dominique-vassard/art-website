@@ -23,5 +23,5 @@ import Elm from "./elm-gallery.js"
 
 const elmDiv = document.getElementById("elm-main")
 if (elmDiv) {
-    elmApp = Elm.Main.embed(elmDiv, {api_url: window.location.origin})
+    const elmApp = Elm.Main.embed(elmDiv, {api_url: window.location.origin})
 }
