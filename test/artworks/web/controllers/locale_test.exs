@@ -36,7 +36,10 @@ defmodule Artworks.Web.LocaleTest do
     conn = conn
     |> get("/?locale=" <> locale)
 
-    assert Gettext.get_locale(Artworks.Web.Gettext) == locale
-    assert get_session(conn, :locale) == locale
+    # assert Gettext.get_locale(Artworks.Web.Gettext) == locale
+    # For now, all site is in fallbacl language
+    # assert get_session(conn, :locale) == locale
+    assert Gettext.get_locale(Artworks.Web.Gettext) == @fallback_locale
+    assert get_session(conn, :locale) == @fallback_locale
   end
 end
