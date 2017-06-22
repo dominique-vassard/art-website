@@ -5,6 +5,7 @@ otp_release: 19.3
 sudo: false
 before_script:
   - nvm install 6.2 && nvm use 6.2
+
 script:
   - cd assets && npm install && ./node_modules/brunch/bin/brunch build --production
   - cd ../ && mix test
