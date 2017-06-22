@@ -9,6 +9,7 @@ module Helpers.ZipList
         , update
         , hasPrevious
         , hasNext
+        , next
         )
 
 {-| This module is designed to provide a simple ZipList.
@@ -101,7 +102,7 @@ back items =
 If next list is empty, current item is returned.
 
     --  ziplist = {previous = [1, 2], current = 3, next = [4, 5]}
-    back ziplist == {previous = [1, 2, 3], current = 4, next = [5]}
+    forward ziplist == {previous = [1, 2, 3], current = 4, next = [5]}
 -}
 forward : ZipList item -> ZipList item
 forward items =
@@ -190,6 +191,32 @@ hasPrevious items =
 hasNext : ZipList item -> Bool
 hasNext items =
     List.length items.next > 0
+
+
+{-| Returns the previous item if it exists. Otherwise returns Nothing
+    -- ziplist = {previous = [1, 2], current = 3, next = [4, 5]}
+    previous ziplist = Maybe.Just 2
+
+    -- ziplist = {previous = [], current = 3, next = [4, 5]}
+    previous ziplist = Maybe.Nothing
+-}
+previous : ZipList item -> Maybe item
+previous items =
+    items.next
+        |> List.reverse
+        |> List.head
+
+
+{-| Returns the next item if it exists. Otherwise returns Nothing
+    -- ziplist = {previous = [1, 2], current = 3, next = [4, 5]}
+    next ziplist = Maybe.Just 4
+
+    -- ziplist = {previous = [1, 2], current = 3, next = []}
+    next ziplist = Maybe.Nothing
+-}
+next : ZipList item -> Maybe item
+next items =
+    List.head items.next
 
 
 {-| Convert a `Maybe List` to a `List`

@@ -13,6 +13,8 @@ import Helpers.ZipList as ZipList
         , forward
         , current
         , hasPrevious
+        , hasNext
+        , next
         )
 
 
@@ -213,10 +215,25 @@ view model =
                     , onClick OpenModal
                     ]
                     []
+                , preloadNextImage model
                 ]
             , viewControl model Next
             ]
         ]
+
+
+preloadNextImage : Model -> Html Msg
+preloadNextImage model =
+    let
+        preloadImg =
+            case ZipList.next model.images of
+                Maybe.Just nextItem ->
+                    img [ class "display-none", src nextItem ] []
+
+                Maybe.Nothing ->
+                    div [] []
+    in
+        preloadImg
 
 
 viewWorkTypeButton : Model -> WorkType -> Html Msg
