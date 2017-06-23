@@ -5,7 +5,14 @@
   <div class="sm-col col-12">
     <center>
       <p class="intro">
-      <%= dgettext "index", "introduction" %>
+      <%= dgettext "index", "introduction_1" %><br />
+      <%= dgettext "index", "introduction_2" %><br />
+      <%= dgettext "index", "introduction_3" %><br />
+      <%= dgettext "index", "introduction_4" %><br />
+      <%= dgettext "index", "introduction_5" %>
+      </p>
+      <p class="intro">
+        <%= dgettext "index", "introduction_6" %>
       </p>
     </center>
   </div>

@@ -10,7 +10,6 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#, fuzzy
 #: lib/artworks/web/templates/home/biography.html.eex:8
 msgid "biography-1"
 msgstr ""

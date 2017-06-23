@@ -10,7 +10,6 @@ msgid ""
 msgstr ""
 "Language: fr\n"
 
-#, fuzzy
 #: lib/artworks/web/templates/home/biography.html.eex:8
 msgid "biography-1"
 msgstr "Avant de peindre, je dessinais des entités abstraites et très colorées qui ont peuplées mes murs et parfois les cabines téléphoniques parisiennes."
