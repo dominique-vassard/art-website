@@ -7,3 +7,12 @@ before_script:
 script:
   - cd assets && npm install && ./node_modules/brunch/bin/brunch build --production
   - cd ../ && mix test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: Ap2JEGX3P4zvLFk7lsop20l96kUvvx6qqEgouChx5f8sbUVMAfYBkzzQ1lqr8moI9hs2rYL4o6i/ArtoGnCm+a+VKwOAWyj5eNJ8LURqa4qGjIATS8H+FRJRP6k4NVygCPhRqhfwyABX4uXfAC3QksW7+W/y/bmB0phLdmMmn1KoioH4DuI8dzRd+XC3Lq53Bilrbpd5TkpJK41bgKj7yql2e+cn20654hL9YANaKpb68fcuvBwEQIkcQiVTi0PHXa81rR+tSrWImT+5tJOQ6tQhpZO0iUr19QlubA9VSIjiq+eau7267UhgboCC02AU1fPXtTryTp54KbPrwLAQfL64jlN1SJooyBIkTHscmsr1xhaZuGWD34x1p5ksjK69a4kp6h3GgZhL/FNNC7s6wQkmgRMlRo4HnwbUS2SoXM7e3OaBu+tq69b5NzEQcF3qlAL3F9NG5WZW9RZY1comaZL/KXogBd6l+gbzTw3LNfmQiou9ySMu0nYUBmjThrDE+hgPidS7wd5Lh0GLeiWuuAQFdTur6pjQXQrFHQNjwkxw5kWVXKZneHW/kUUAm1enSXfzXH62sI0MHg00E63gaGxqofora0dZ8xgGngY13vICS1av4nEkNnfXC+cZHMcsOBVrHlZUjKuLuZnXJDhoyy3JL5uRXAZQvtymMGwGMWU=
+  app: dominique-vassard-art
+  buildpack:
+    - https://github.com/HashNuke/heroku-buildpack-elixir.git
+    - https://github.com/gjaldon/heroku-buildpack-phoenix-static.git
