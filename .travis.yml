@@ -1,19 +1,16 @@
 language: elixir
 elixir: 1.4.1
 otp_release: 19.3
-
 sudo: false
 before_script:
 - nvm install 6.2 && nvm use 6.2
-
 script:
 - cd assets && npm install && ./node_modules/brunch/bin/brunch build --production
 - cd ../ && mix test
-
 deploy:
   provider: heroku
   api_key:
-    secure: BX4KRaRam4OGlsOEYjqCR02544v/JyO7ANeVbDAPlkCZ6OrDXYEiJQcdBhIZBN/rpqJRc0bqN82YjjPDezZEydUbpTH/SyZNAwYVCFTilvJUxaA5qXq68ObSd9L2DihM7sR3UVRC2tu4DM5+s/X+mRnAm1rUMs+dpYRaK4jIsKbcphQ6j3gMDk+fq4FXE9Cz4bo+CeuBzLb1Y/eazuIw8BqjQ9NvOIhyH61ajUU+g67ly2JFK+pmON+THvyoPua9muyGp0NcMUPZz2rD2lFxX5ZjpHo04dV0N5NegHhZCOKggdi0lYKDDPRAHafnPF5Mt/pPndaU1audhOzfEHaI7kaQ+KhXAMhJZfjnls3bYpEc7r5Jr/LUWVoPx3OFflovIoCBu8N1egIAH/5Au/eXfrjSKRXvf8Nm6On2bxA4Wvzn36Ewz9lmUnedx3J4TzLk+3idGPsJEofaPpSfem1DrmRYFzn7lmb30K6AffzqC5A3xUG0KxdanfHlhwNlgppIxi90z3EZhZEdV2gvu0+wXyaWjR2y9T7Ida6pdNjrFmmp8xu5Pqk6bC7wENmOltlbtorT+hg+1O0ocBPFt4HHVM60VXHKXtQ7BCEOu8aoqAgbM/sJBZOoIdUX5NL9fI9+GHUMm4mVbTCCmJ5odNzjeNYYz622vV5+T0Ilb/5a+Bo=
+    secure: Ap2JEGX3P4zvLFk7lsop20l96kUvvx6qqEgouChx5f8sbUVMAfYBkzzQ1lqr8moI9hs2rYL4o6i/ArtoGnCm+a+VKwOAWyj5eNJ8LURqa4qGjIATS8H+FRJRP6k4NVygCPhRqhfwyABX4uXfAC3QksW7+W/y/bmB0phLdmMmn1KoioH4DuI8dzRd+XC3Lq53Bilrbpd5TkpJK41bgKj7yql2e+cn20654hL9YANaKpb68fcuvBwEQIkcQiVTi0PHXa81rR+tSrWImT+5tJOQ6tQhpZO0iUr19QlubA9VSIjiq+eau7267UhgboCC02AU1fPXtTryTp54KbPrwLAQfL64jlN1SJooyBIkTHscmsr1xhaZuGWD34x1p5ksjK69a4kp6h3GgZhL/FNNC7s6wQkmgRMlRo4HnwbUS2SoXM7e3OaBu+tq69b5NzEQcF3qlAL3F9NG5WZW9RZY1comaZL/KXogBd6l+gbzTw3LNfmQiou9ySMu0nYUBmjThrDE+hgPidS7wd5Lh0GLeiWuuAQFdTur6pjQXQrFHQNjwkxw5kWVXKZneHW/kUUAm1enSXfzXH62sI0MHg00E63gaGxqofora0dZ8xgGngY13vICS1av4nEkNnfXC+cZHMcsOBVrHlZUjKuLuZnXJDhoyy3JL5uRXAZQvtymMGwGMWU=
   app: dominique-vassard-art
   buildpack:
     - https://github.com/HashNuke/heroku-buildpack-elixir.git
