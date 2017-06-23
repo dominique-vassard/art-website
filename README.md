@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.com/dominique-vassard/art-website.svg?token=8LTTPReuFs7tfvQHxtBw&branch=master)](https://travis-ci.com/dominique-vassard/art-website)
+[![Build Status](https://travis-ci.org/dominique-vassard/art-website.svg?branch=master)](https://travis-ci.org/dominique-vassard/art-website)
 
 Code for actual art website.
 
-Visit at http://art.dominique-vassard.com
+Visit at https://art.dominique-vassard.com
 or
-http://www.dominiquevassard.art
+https://www.dominiquevassard.art
