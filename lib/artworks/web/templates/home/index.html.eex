@@ -4,6 +4,7 @@
   </div>
   <div class="sm-col col-12">
     <center>
+      <br />
       <p class="intro">
       <%= dgettext "index", "introduction_1" %><br />
       <%= dgettext "index", "introduction_2" %><br />

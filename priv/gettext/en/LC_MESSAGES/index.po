@@ -10,27 +10,26 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#, fuzzy
-#: lib/artworks/web/templates/home/index.html.eex:8
+#: lib/artworks/web/templates/home/index.html.eex:9
 msgid "introduction_1"
 msgstr ""
 
-#: lib/artworks/web/templates/home/index.html.eex:9
+#: lib/artworks/web/templates/home/index.html.eex:10
 msgid "introduction_2"
 msgstr ""
 
-#: lib/artworks/web/templates/home/index.html.eex:10
+#: lib/artworks/web/templates/home/index.html.eex:11
 msgid "introduction_3"
 msgstr ""
 
-#: lib/artworks/web/templates/home/index.html.eex:11
+#: lib/artworks/web/templates/home/index.html.eex:12
 msgid "introduction_4"
 msgstr ""
 
-#: lib/artworks/web/templates/home/index.html.eex:12
+#: lib/artworks/web/templates/home/index.html.eex:13
 msgid "introduction_5"
 msgstr ""
 
-#: lib/artworks/web/templates/home/index.html.eex:15
+#: lib/artworks/web/templates/home/index.html.eex:16
 msgid "introduction_6"
 msgstr ""
