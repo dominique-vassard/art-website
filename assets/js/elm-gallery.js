@@ -13596,6 +13596,51 @@ var _user$project$Main$workTypeToText = F2(
 			return _elm_lang$core$Native_Utils.eq(language, 'en') ? 'paintings' : 'Peintures';
 		}
 	});
+var _user$project$Main$toZipList = function (items) {
+	var tl = A2(
+		_elm_lang$core$Maybe$withDefault,
+		{ctor: '[]'},
+		_elm_lang$core$List$tail(items));
+	var hd = A2(
+		_elm_lang$core$Maybe$withDefault,
+		'',
+		_elm_lang$core$List$head(items));
+	return A3(
+		_user$project$Helpers_ZipList$ZipList,
+		{ctor: '[]'},
+		hd,
+		tl);
+};
+var _user$project$Main$getRandomIntList = F2(
+	function (len, seed) {
+		return _elm_lang$core$Tuple$first(
+			A2(
+				_elm_lang$core$Random$step,
+				A2(
+					_elm_lang$core$Random$list,
+					len,
+					A2(_elm_lang$core$Random$int, 0, 1000)),
+				_elm_lang$core$Random$initialSeed(seed)));
+	});
+var _user$project$Main$shuffleImageList = F2(
+	function (seed, imageList) {
+		return _elm_lang$core$Tuple$second(
+			_elm_lang$core$List$unzip(
+				A2(
+					_elm_lang$core$List$sortBy,
+					_elm_lang$core$Tuple$first,
+					A3(
+						_elm_lang$core$List$map2,
+						F2(
+							function (v0, v1) {
+								return {ctor: '_Tuple2', _0: v0, _1: v1};
+							}),
+						A2(
+							_user$project$Main$getRandomIntList,
+							_elm_lang$core$List$length(imageList) + 1,
+							seed),
+						imageList))));
+	});
 var _user$project$Main$Flags = F2(
 	function (a, b) {
 		return {api_url: a, seed: b};
@@ -13613,9 +13658,9 @@ var _user$project$Main$imageListDecoder = A3(
 		'result',
 		_elm_lang$core$Json_Decode$string,
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Main$ImageList)));
-var _user$project$Main$Model = F7(
-	function (a, b, c, d, e, f, g) {
-		return {api_url: a, modal_opened: b, images: c, work_type: d, rndList: e, rndImageList: f, currentSeed: g};
+var _user$project$Main$Model = F5(
+	function (a, b, c, d, e) {
+		return {api_url: a, modal_opened: b, images: c, work_type: d, currentSeed: e};
 	});
 var _user$project$Main$Next = {ctor: 'Next'};
 var _user$project$Main$Previous = {ctor: 'Previous'};
@@ -13683,8 +13728,6 @@ var _user$project$Main$init = function (flags) {
 				'',
 				{ctor: '[]'}),
 			work_type: initial_work_type,
-			rndList: {ctor: '[]'},
-			rndImageList: {ctor: '[]'},
 			currentSeed: flags.seed
 		},
 		_1: A2(_user$project$Main$getImageList, flags.api_url, initial_work_type)
@@ -13743,51 +13786,24 @@ var _user$project$Main$update = F2(
 				};
 			default:
 				if (_p2._0.ctor === 'Ok') {
-					var _p6 = _p2._0._0.links;
+					var _p4 = _p2._0._0.links;
+					var imageList = ((_elm_lang$core$Native_Utils.cmp(
+						_elm_lang$core$List$length(_p4),
+						0) > 0) && _elm_lang$core$Native_Utils.eq(_p2._0._0.result, 'success')) ? _user$project$Main$toZipList(
+						A2(_user$project$Main$shuffleImageList, model.currentSeed, _p4)) : model.images;
 					var tl = A2(
 						_elm_lang$core$Maybe$withDefault,
 						{ctor: '[]'},
-						_elm_lang$core$List$tail(_p6));
+						_elm_lang$core$List$tail(_p4));
 					var hd = A2(
 						_elm_lang$core$Maybe$withDefault,
 						'',
-						_elm_lang$core$List$head(_p6));
-					var imageList = ((_elm_lang$core$Native_Utils.cmp(
-						_elm_lang$core$List$length(_p6),
-						0) > 0) && _elm_lang$core$Native_Utils.eq(_p2._0._0.result, 'success')) ? A2(_user$project$Helpers_ZipList$init, hd, tl) : model.images;
-					var _p4 = A2(
-						_elm_lang$core$Random$step,
-						A2(
-							_elm_lang$core$Random$list,
-							_elm_lang$core$List$length(imageList.next) + 1,
-							A2(_elm_lang$core$Random$int, 0, 1000)),
-						_elm_lang$core$Random$initialSeed(model.currentSeed));
-					var rndList = _p4._0;
-					var _p5 = _elm_lang$core$List$unzip(
-						A2(
-							_elm_lang$core$List$sortBy,
-							_elm_lang$core$Tuple$first,
-							A3(
-								_elm_lang$core$List$map2,
-								F2(
-									function (v0, v1) {
-										return {ctor: '_Tuple2', _0: v0, _1: v1};
-									}),
-								rndList,
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									{
-										ctor: '::',
-										_0: imageList.current,
-										_1: {ctor: '[]'}
-									},
-									imageList.next))));
-					var rndImageList = _p5._1;
+						_elm_lang$core$List$head(_p4));
 					return {
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
-							{images: imageList, rndList: rndList, rndImageList: rndImageList}),
+							{images: imageList}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 				} else {
@@ -13892,16 +13908,16 @@ var _user$project$Main$MoveTo = function (a) {
 var _user$project$Main$viewControl = F2(
 	function (model, direction) {
 		var direction_style = function () {
-			var _p7 = direction;
-			if (_p7.ctor === 'Previous') {
+			var _p5 = direction;
+			if (_p5.ctor === 'Previous') {
 				return 'left';
 			} else {
 				return 'right';
 			}
 		}();
 		var disabled_control = function () {
-			var _p8 = direction;
-			if (_p8.ctor === 'Previous') {
+			var _p6 = direction;
+			if (_p6.ctor === 'Previous') {
 				return _user$project$Helpers_ZipList$hasPrevious(model.images) ? '' : 'disabled';
 			} else {
 				return _user$project$Helpers_ZipList$hasNext(model.images) ? '' : 'disabled';

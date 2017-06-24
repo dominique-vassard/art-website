@@ -60,8 +60,6 @@ type alias Model =
     , modal_opened : Bool
     , images : ZipList String
     , work_type : WorkType
-    , rndList : List Int
-    , rndImageList : List String
     , currentSeed : Int
     }
 
@@ -81,8 +79,6 @@ init flags =
           , images =
                 ZipList.init "" []
           , work_type = initial_work_type
-          , rndList = []
-          , rndImageList = []
           , currentSeed = flags.seed
           }
         , getImageList flags.api_url initial_work_type
@@ -131,42 +127,52 @@ update msg model =
 
                 imageList =
                     if List.length links > 0 && result == "success" then
-                        ZipList.init hd tl
+                        --ZipList.init hd tl
+                        shuffleImageList model.currentSeed links
+                            |> toZipList
                     else
                         model.images
-
-                ( rndList, _ ) =
-                    Random.step (Random.list ((List.length imageList.next) + 1) (Random.int 0 1000)) (Random.initialSeed model.currentSeed)
-
-                ( _, rndImageList ) =
-                    List.map2 (,) rndList ([ imageList.current ] ++ imageList.next)
-                        |> List.sortBy Tuple.first
-                        |> List.unzip
             in
-                ( { model | images = imageList, rndList = rndList, rndImageList = rndImageList }, Cmd.none )
+                ( { model | images = imageList }, Cmd.none )
 
         NewImageList (Err msg) ->
             ( model, Cmd.none )
 
 
 
+-- HELPERS
+
+
+shuffleImageList : Int -> List String -> List String
+shuffleImageList seed imageList =
+    imageList
+        |> List.map2 (,) (getRandomIntList (List.length imageList + 1) seed)
+        |> List.sortBy Tuple.first
+        |> List.unzip
+        |> Tuple.second
+
+
+getRandomIntList : Int -> Int -> List Int
+getRandomIntList len seed =
+    Random.initialSeed seed
+        |> Random.step (Random.list len (Random.int 0 1000))
+        |> Tuple.first
+
+
+toZipList : List String -> ZipList String
+toZipList items =
+    let
+        hd =
+            Maybe.withDefault "" (List.head items)
+
+        tl =
+            Maybe.withDefault [] (List.tail items)
+    in
+        ZipList [] hd tl
+
+
+
 -- COMMANDS
---shuffleImageList: List String -> ZipList String
---shuffleImageList imageList =
---    let
---         =
---    in
---        shuffledImageList
---getRandomIntList: Int -> Int -> Int -> List Int
---getRandomIntList len seed =
---    Random.initialSeed
---    |> Random.list len (Random.int 0 1000)
---    |> Random.step
---getInitialSeed : Int
---getInitialSeed =
---    Random.initialSeed 5000
---        |> Random.step (Random.int 0 5000)
---        |> Tuple.first
 
 
 getImageList : String -> WorkType -> Cmd Msg
@@ -210,8 +216,6 @@ getAllWorkTypes =
 
 
 
---shuffle: List String -> List String
---shuffle items =
 -- SUBSCRIPTIONS
 
 
