@@ -10,15 +10,22 @@ msgid ""
 msgstr ""
 "Language: fr\n"
 
-#, fuzzy
-#: lib/artworks/web/templates/home/biography.html.eex:8
+#: lib/artworks/web/templates/home/biography.html.eex:9
 msgid "biography-1"
-msgstr "Avant de peindre, je dessinais des entités abstraites et très colorées qui ont peuplées mes murs et parfois les cabines téléphoniques parisiennes."
+msgstr "Au début, n'étaient que les moissisures psychédéliques, formes informes à la vie autonome et à la génération envahissant tous les supports sur lesquelles l'adhésion leur était possible."
 
-#: lib/artworks/web/templates/home/biography.html.eex:11
+#: lib/artworks/web/templates/home/biography.html.eex:12
 msgid "biography-2"
-msgstr "Puis j'ai ressenti le besoin de peindre, de passer au \"support-roi\": j'ai donc utilisé cette énergie et ma précédente expérience pour créer des peintures abstraites qui soient en prise directe avec mon inconscient. Je ne voulais pas, et ne veux toujours pas, penser la peinture au préalable mais plutôt laisser l'esprit utiliser la main afin de laisser sa trace sur la toile de manière pure. "
+msgstr "Puis vinrent les toiles. Peuplées elles aussi de formes informes, traversés de courbes inscrites dans leurs chairs, habillées du mélange des couleurs primaires."
 
-#: lib/artworks/web/templates/home/biography.html.eex:14
+#: lib/artworks/web/templates/home/biography.html.eex:15
 msgid "biography-3"
-msgstr "Le résultat est une peinture dans laquelle le spectateur peut plonger, qu'il peut explorer comme un paysage, une peinture comme un paysage mental qui permet au spectateur d'explorer sa propre intériorité."
+msgstr "Deux entités quasi-vivantes, filles d'un automatisme laissant la main libre de créer ce qui chante à l'oreille de l'inconscient sans subir les restrictions figurativo-conceptuelles de la tête."
+
+#: lib/artworks/web/templates/home/biography.html.eex:3
+msgid "bigraphy-title"
+msgstr "Pourquoi?"
+
+#: lib/artworks/web/templates/home/biography.html.eex:18
+msgid "biography-4"
+msgstr "Deux entités livrées aux regards qui en font parfois émerger des figures qui sombrent dans l'inconnu aussi vite qu'elles sont apparues. Livrées aux regards qui s'interrogent, se perdent en réflexion avant de se tourner vers eux-mêmes, de s'abandonner à la contemplation onirique de leur reflet."

@@ -10,6 +10,26 @@ msgid ""
 msgstr ""
 "Language: fr\n"
 
-#: lib/artworks/web/templates/home/index.html.eex:8
-msgid "introduction"
-msgstr "Rêver conduit dans des endroits étrange à la limite du connu et de l'inconnu. Les lieux se mélangent au temps dans une danse sans fin. On ne sait jamais si on est déjà venu, si l'endroit familier a été légèrement transformé ou si cette impression de familiarité n'est qu'un leurre."
+#: lib/artworks/web/templates/home/index.html.eex:9
+msgid "introduction_1"
+msgstr "Rêver conduit dans des endroits étranges,"
+
+#: lib/artworks/web/templates/home/index.html.eex:10
+msgid "introduction_2"
+msgstr "Des endroits à la limite du connu et de l'inconnu,"
+
+#: lib/artworks/web/templates/home/index.html.eex:11
+msgid "introduction_3"
+msgstr "Des endroits où les lieux se mélangent au temps dans une danse sans fin,"
+
+#: lib/artworks/web/templates/home/index.html.eex:12
+msgid "introduction_4"
+msgstr "Des endroits dont on ne sait si on y est déjà venu, "
+
+#: lib/artworks/web/templates/home/index.html.eex:13
+msgid "introduction_5"
+msgstr "Ou si cette impression de familiarité n'est qu'un leurre."
+
+#: lib/artworks/web/templates/home/index.html.eex:16
+msgid "introduction_6"
+msgstr "Rêver est un voyage qui a toujours la même destination mouvante."

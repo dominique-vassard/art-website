@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Http exposing (get, send)
 import Json.Decode exposing (string, list, Decoder)
 import Json.Decode.Pipeline exposing (decode, required)
+import Random exposing (list, int)
 import Helpers.ZipList as ZipList
     exposing
         ( ZipList
@@ -34,6 +35,7 @@ main =
 
 type alias Flags =
     { api_url : String
+    , seed : Int
     }
 
 
@@ -58,6 +60,7 @@ type alias Model =
     , modal_opened : Bool
     , images : ZipList String
     , work_type : WorkType
+    , currentSeed : Int
     }
 
 
@@ -75,16 +78,8 @@ init flags =
           , modal_opened = False
           , images =
                 ZipList.init "" []
-                --"./images/artworks/drawings/dessins-1.png"
-                --[ "./images/artworks/paintings/peintures-7.jpg"
-                --, "./images/artworks/paintings/peintures-8.jpg"
-                --, "./images/artworks/paintings/peintures-9.jpg"
-                --, "./images/artworks/paintings/peintures-hor.jpg"
-                --, "./images/artworks/paintings/peintures-10.jpg"
-                --, "./images/artworks/paintings/peintures-11.jpg"
-                --, "./images/artworks/paintings/peintures-12.jpg"
-                --]
           , work_type = initial_work_type
+          , currentSeed = flags.seed
           }
         , getImageList flags.api_url initial_work_type
         )
@@ -132,7 +127,9 @@ update msg model =
 
                 imageList =
                     if List.length links > 0 && result == "success" then
-                        ZipList.init hd tl
+                        --ZipList.init hd tl
+                        shuffleImageList model.currentSeed links
+                            |> toZipList
                     else
                         model.images
             in
@@ -140,6 +137,38 @@ update msg model =
 
         NewImageList (Err msg) ->
             ( model, Cmd.none )
+
+
+
+-- HELPERS
+
+
+shuffleImageList : Int -> List String -> List String
+shuffleImageList seed imageList =
+    imageList
+        |> List.map2 (,) (getRandomIntList (List.length imageList + 1) seed)
+        |> List.sortBy Tuple.first
+        |> List.unzip
+        |> Tuple.second
+
+
+getRandomIntList : Int -> Int -> List Int
+getRandomIntList len seed =
+    Random.initialSeed seed
+        |> Random.step (Random.list len (Random.int 0 1000))
+        |> Tuple.first
+
+
+toZipList : List String -> ZipList String
+toZipList items =
+    let
+        hd =
+            Maybe.withDefault "" (List.head items)
+
+        tl =
+            Maybe.withDefault [] (List.tail items)
+    in
+        ZipList [] hd tl
 
 
 
@@ -162,7 +191,7 @@ imageListDecoder : Decoder ImageList
 imageListDecoder =
     decode ImageList
         |> required "result" string
-        |> required "links" (list string)
+        |> required "links" (Json.Decode.list string)
 
 
 workTypeToText : WorkType -> String -> String
