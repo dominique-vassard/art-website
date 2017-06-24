@@ -6,7 +6,7 @@ before_script:
   - nvm install 6.2 && nvm use 6.2
 script:
   - cd assets && npm install
-  - ./node_modules/brunch/bin/brunch build -d --production
+  - ./node_modules/brunch/bin/brunch build -d --production --config brunch-config-prod.js
   - cd ../ && mix test
 deploy:
   provider: heroku
