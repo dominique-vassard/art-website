@@ -12,7 +12,8 @@ use Mix.Config
 config :artworks, ArtworksWeb.Endpoint,
   on_init: {ArtworksWeb.Endpoint, :load_from_system_env, []},
   # url: [host: "example.com", port: 80],
-  force_ssl: [host: nil, rewrite_on: [:x_forwarded_proto]],
+  http: [port: {:system, "PORT"}],
+  force_ssl: [host: nil, rewrite_on: [:x_forwarded_proto], port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
