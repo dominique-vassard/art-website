@@ -23,6 +23,6 @@
     <div class="container px2 main-container">
         <%= render @view_module, @view_template, assigns %>
     </div>
-    <script src="<%= Routes.static_path(@conn, "/js/app-2.js") %>"></script>
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
