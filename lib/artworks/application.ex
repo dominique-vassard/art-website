@@ -1,27 +1,32 @@
 defmodule Artworks.Application do
-  use Application
-  @moduledoc """
-    Artworks application
-  """
-
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
-  def start(_type, _args) do
-    import Supervisor.Spec
+  @moduledoc false
 
-    # Define workers and child supervisors to be supervised
+  use Application
+
+  def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      # supervisor(Artworks.Repo, []),
-      # Start the endpoint when the application starts
-      supervisor(Artworks.Web.Endpoint, []),
-      # Start your own worker by calling: Artworks.Worker.start_link(arg1, arg2, arg3)
-      # worker(Artworks.Worker, [arg1, arg2, arg3]),
+      # Start the Telemetry supervisor
+      ArtworksWeb.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Artworks.PubSub},
+      # Start the Endpoint (http/https)
+      ArtworksWeb.Endpoint
+      # Start a worker by calling: Artworks.Worker.start_link(arg)
+      # {Artworks.Worker, arg}
     ]
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Artworks.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  # Tell Phoenix to update the endpoint configuration
+  # whenever the application is updated.
+  def config_change(changed, _new, removed) do
+    ArtworksWeb.Endpoint.config_change(changed, removed)
+    :ok
   end
 end
